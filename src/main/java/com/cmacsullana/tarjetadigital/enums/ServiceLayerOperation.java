@@ -16,6 +16,7 @@ public enum ServiceLayerOperation {
 	CREDICLIC_LISTAR_DOCUMENTOS_PRODUCTO("954", "/CmacCrediclicService/cmacCrediclicService.json"),
 	CREDICLIC_LISTAR_PARAMETROS_VARIOS("1516", "/CmacCrediclicService/cmacCrediclicService.json"),
 	VISO_OBTENER_CUESTIONARIO_CLIENTE("955", "/CmacCrediclicService/cmacCrediclicService.json"),
+	VISO_VALIDAR_CUESTIONARIO_CLIENTE("956", "/CmacCrediclicService/cmacCrediclicService.json"),
     ;
 	
 	private final String id;

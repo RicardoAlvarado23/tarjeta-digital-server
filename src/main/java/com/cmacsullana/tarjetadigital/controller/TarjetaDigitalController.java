@@ -50,4 +50,24 @@ public class TarjetaDigitalController {
 		return ResponseEntity.ok().body(response);
 	}
 	
+	
+	@PostMapping("/validar-cuestionario")
+	public ResponseEntity<?> validarCuestionario(@RequestBody Map<String, Object> parametros) {
+		Map<String, Object> response = UtilFunctions.createMessageOk();
+		try {
+			String tipoDocumento = UtilFunctions.verifyString(parametros.get("tipoDocumento"));
+			String doi = UtilFunctions.verifyString(parametros.get("doi"));
+			String codigoEvaluacion = UtilFunctions.verifyString(parametros.get("codigoEvaluacion"));
+			String respuestas = UtilFunctions.verifyString(parametros.get("respuestas"));
+			
+			Map<String, Object> result = busServicio.validarCuestionarioCliente(tipoDocumento, doi, codigoEvaluacion, respuestas);
+			response = UtilFunctions.createMessage(result);
+			response.putAll(result);
+		} catch (Exception e) {
+			logger.error("Error en validar cuestionario. Detalle: " + e.getMessage());
+			response = UtilFunctions.createMessageError("Error en validar cuestionario");
+		}
+		return ResponseEntity.ok().body(response);
+	}
+	
 }

@@ -40,4 +40,21 @@ public class BusServiceImpl extends RestJsonProvider  implements BusService{
 		return result;
 	}
 
+	@Override
+	public Map<String, Object> validarCuestionarioCliente(String tipoDocumento, String numeroDocumento, String codigoEvaluacion, String respuestas) {
+		ServiceLayerOperation serviceLayerOperation = ServiceLayerOperation.VISO_VALIDAR_CUESTIONARIO_CLIENTE;
+		Map<String, Object> params = new HashMap<>();
+		params.put("tipoDocumento", tipoDocumento);
+		params.put("numDocumento", numeroDocumento);
+		params.put("codCuestionario", "11");
+		params.put("codEvaluacion", codigoEvaluacion);
+		params.put("respuestas", respuestas);
+		UtilFunctions.addDefaultParams(params, serviceLayerOperation);
+		UtilFunctions.addLogParams(params);
+		UtilFunctions.addDatoSerie(params, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
+
+		Map<String, Object> result = callServiceJson(params, serviceLayerOperation.getUrl(urlServiceLayerBus));
+		return result;
+	}
+
 }
